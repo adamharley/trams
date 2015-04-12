@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Trams</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+		<meta property="og:image" content="images/preview.png" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="apple-touch-icon" href="images/ios.png">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+		<style>
+			.form-inline {
+				margin-bottom: 15px;
+			}
+		</style>
+		<script src="http://code.jquery.com/jquery.js"></script>
+		<script src="yql.js"></script>
+		<script src="func.js"></script>
+		<script src="stops.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<form>
+				<h2>Outbound journey</h2>
+				<p>
+					<button type="button" class="btn btn-info" id="hereNowBtn">
+						<span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+						Here and Now
+						<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+					</button>
+				</p>
+				<div class="form-inline">
+					<div class="form-group">
+						<select class="form-control"  name="cboStart" id="cboStart">
+							<option value="0">Travelling from...</option>
+							<option value="30">Arbourthorne Road</option>
+							<option value="21">Arena/Don Valley</option>
+							<option value="20">Attercliffe</option>
+							<option value="5">Bamforth Street</option>
+							<option value="42">Beighton/Drake House Lane</option>
+							<option value="36">Birley Lane</option>
+							<option value="37">Birley Moor Road</option>
+							<option value="23">Carbrook</option>
+							<option value="14">Castle Square</option>
+							<option value="13">Cathedral</option>
+							<option value="12">City Hall</option>
+							<option value="17">Cricket Inn Road</option>
+							<option value="41">Crystal Peaks</option>
+							<option value="39">Donetsk Way</option>
+							<option value="15">Fitzalan Square/Ponds Forge</option>
+							<option value="34">Gleadless Townend</option>
+							<option value="28">Granville Road/The Sheffield College</option>
+							<option value="38">Hackenthorpe</option>
+							<option value="45">Halfway</option>
+							<option value="46">Herdings Park</option>
+							<option value="47">Herdings/Leighton Road</option>
+							<option value="4">Hillsborough</option>
+							<option value="3">Hillsborough Park</option>
+							<option value="33">Hollinsend</option>
+							<option value="16">Hyde Park</option>
+							<option value="7">Infirmary Road</option>
+							<option value="6">Langsett/Primrose View</option>
+							<option value="2">Leppings Lane</option>
+							<option value="26">Malin Bridge</option>
+							<option value="32">Manor Top/Elm Tree</option>
+							<option value="25">Meadowhall Interchange</option>
+							<option value="24">Meadowhall South/Tinsley</option>
+							<option value="1">Middlewood</option>
+							<option value="40">Moss Way</option>
+							<option value="9">Netherthorpe Road</option>
+							<option value="18">Nunnery Square</option>
+							<option value="48">Park Grange</option>
+							<option value="29">Park Grange Croft</option>
+							<option value="8">Shalesmoor</option>
+							<option value="27">Sheffield Station/Sheffield Hallam University</option>
+							<option value="31">Spring Lane</option>
+							<option value="10">University of Sheffield</option>
+							<option value="22">Valley Centertainment</option>
+							<option value="43">Waterthorpe</option>
+							<option value="11">West Street</option>
+							<option value="44">Westfield</option>
+							<option value="35">White Lane</option>
+							<option value="19">Woodbourn Road</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-control"  name="cboEnd" id="cboEnd">
+							<option value="0">Travelling to...</option>
+							<option value="30">Arbourthorne Road</option>
+							<option value="21">Arena/Don Valley</option>
+							<option value="20">Attercliffe</option>
+							<option value="5">Bamforth Street</option>
+							<option value="42">Beighton/Drake House Lane</option>
+							<option value="36">Birley Lane</option>
+							<option value="37">Birley Moor Road</option>
+							<option value="23">Carbrook</option>
+							<option value="14">Castle Square</option>
+							<option value="13">Cathedral</option>
+							<option value="12">City Hall</option>
+							<option value="17">Cricket Inn Road</option>
+							<option value="41">Crystal Peaks</option>
+							<option value="39">Donetsk Way</option>
+							<option value="15">Fitzalan Square/Ponds Forge</option>
+							<option value="34">Gleadless Townend</option>
+							<option value="28">Granville Road/The Sheffield College</option>
+							<option value="38">Hackenthorpe</option>
+							<option value="45">Halfway</option>
+							<option value="46">Herdings Park</option>
+							<option value="47">Herdings/Leighton Road</option>
+							<option value="4">Hillsborough</option>
+							<option value="3">Hillsborough Park</option>
+							<option value="33">Hollinsend</option>
+							<option value="16">Hyde Park</option>
+							<option value="7">Infirmary Road</option>
+							<option value="6">Langsett/Primrose View</option>
+							<option value="2">Leppings Lane</option>
+							<option value="26">Malin Bridge</option>
+							<option value="32">Manor Top/Elm Tree</option>
+							<option value="25">Meadowhall Interchange</option>
+							<option value="24">Meadowhall South/Tinsley</option>
+							<option value="1">Middlewood</option>
+							<option value="40">Moss Way</option>
+							<option value="9">Netherthorpe Road</option>
+							<option value="18">Nunnery Square</option>
+							<option value="48">Park Grange</option>
+							<option value="29">Park Grange Croft</option>
+							<option value="8">Shalesmoor</option>
+							<option value="27">Sheffield Station/Sheffield Hallam University</option>
+							<option value="31">Spring Lane</option>
+							<option value="10">University of Sheffield</option>
+							<option value="22">Valley Centertainment</option>
+							<option value="43">Waterthorpe</option>
+							<option value="11">West Street</option>
+							<option value="44">Westfield</option>
+							<option value="35">White Lane</option>
+							<option value="19">Woodbourn Road</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboDayOfWeek" id="cboDayOfWeekWeekday" value="1" />
+							Weekday
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboDayOfWeek" id="cboDayOfWeekSaturday" value="2" />
+							Saturday
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboDayOfWeek" id="cboDayOfWeekSunday" value="3" />
+							Sunday
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboIsEndTime" id="cboIsEndTimeDeparting" value="0" />
+							Departing at&hellip;
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboIsEndTime" id="cboIsEndTimeArriving" value="1" />
+							Arriving at&hellip;
+						</label>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-group">
+						<select class="form-control"  name="cboHour" id="cboHour">
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">00</option>
+							<option value="25">01</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-control"  name="cboMinute" id="cboMinute">
+							<option value="00">00</option>
+							<option value="05">05</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="25">25</option>
+							<option value="30">30</option>
+							<option value="35">35</option>
+							<option value="40">40</option>
+							<option value="45">45</option>
+							<option value="50">50</option>
+							<option value="55">55</option>
+						</select>
+					</div>
+				</div>
+				<h2>Return journey</h2></h3>
+				<div class="form-group">
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboReturnIsEndTime" id="cboReturnIsEndTimeNone" value="-1" checked />
+							Not required
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboReturnIsEndTime" id="cboReturnIsEndTimeDeparting" value="0" />
+							Departing at&hellip;
+						</label>
+					</div>
+					<div class="radio-inline">
+						<label>
+							<input type="radio" name="cboReturnIsEndTime" id="cboReturnIsEndTimeArriving" value="1" />
+							Arriving at&hellip;
+						</label>
+					</div>
+				</div>
+				<div class="form-inline">
+					<div class="form-group">
+						<select class="form-control"  name="cboReturnHour" id="cboReturnHour">
+							<option value="05">05</option>
+							<option value="06">06</option>
+							<option value="07">07</option>
+							<option value="08">08</option>
+							<option value="09">09</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+							<option value="13">13</option>
+							<option value="14">14</option>
+							<option value="15">15</option>
+							<option value="16">16</option>
+							<option value="17">17</option>
+							<option value="18">18</option>
+							<option value="19">19</option>
+							<option value="20">20</option>
+							<option value="21">21</option>
+							<option value="22">22</option>
+							<option value="23">23</option>
+							<option value="24">00</option>
+							<option value="25">01</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<select class="form-control"  name="cboReturnMinute" id="cboReturnMinute">
+							<option value="00">00</option>
+							<option value="05">05</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+							<option value="25">25</option>
+							<option value="30">30</option>
+							<option value="35">35</option>
+							<option value="40">40</option>
+							<option value="45">45</option>
+							<option value="50">50</option>
+							<option value="55">55</option>
+						</select>
+					</div>
+				</div>
+				<button type="button" class="btn btn-primary" id="searchBtn">Search</button>
+			</form>
+			
+			<table class="table">
+				<tbody>
+					<tr id="departAt">
+						<th>Depart at</th>
+						<td></td>
+					</tr>
+					<tr id="changeAt">
+						<th>Change at</th>
+						<td></td>
+					</tr>
+					<tr id="arriveAt">
+						<th>Arrive at</th>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
